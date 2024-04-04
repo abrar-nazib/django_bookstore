@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # Local
     'accounts.apps.AccountsConfig',
+    'pages.apps.PagesConfig',
 ]
 
 AUTH_USER_MODEL='accounts.CustomUser' # Register CustomUser as the Authentication User
@@ -59,7 +60,7 @@ ROOT_URLCONF = 'djang_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
