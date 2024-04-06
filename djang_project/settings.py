@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Third Party
+    'crispy_forms',
+    'crispy_bootstrap5',
+
     # Local
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
@@ -75,6 +79,10 @@ TEMPLATES = [
         },
     },
 ]
+
+# django-crispy-forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5" 
+CRISPY_TEMPLATE_PACK = "bootstrap5" 
 
 WSGI_APPLICATION = 'djang_project.wsgi.application'
 
@@ -128,6 +136,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
