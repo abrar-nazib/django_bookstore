@@ -37,11 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites', # For allauth package
 
     # Third Party
     'crispy_forms',
     'crispy_bootstrap5',
-
+    'allauth', # Allauth package
+    'allauth.account', # # Account feature of allauth
+    
     # Local
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
@@ -49,8 +52,24 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL='accounts.CustomUser' # Register CustomUser as the Authentication User
 
+# Config for allauth
+SITE_ID=1
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend", # Default backend
+    "allauth.account.auth_backends.AuthenticationBackend", # For allauth specific options
+)
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" # Allauth sends emails using smtp upon successful registration. As we don't have that, we'll use console
+
 LOGIN_REDIRECT_URL = "home"
-LOGOUT_REDIRECT_URL = "home"
+# LOGOUT_REDIRECT_URL = "home" # Previous
+ACCOUNT_LOGOUT_REDIRECT = "home" # For Allauth
+ACCOUNT_SESSION_REMEMBER = True # For disabling the Remember Me option
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False # For not requiring password twice while logging in
+ACCOUNT_USERNAME_REQUIRED = False # new
+ACCOUNT_AUTHENTICATION_METHOD = "email" # new
+ACCOUNT_EMAIL_REQUIRED = True # new
+ACCOUNT_UNIQUE_EMAIL = True # new
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
